@@ -4,7 +4,7 @@
   （VOICEVOX アプリを起動するか、docker run -d -p 50021:50021 voicevox/voicevox_engine:cpu-latest）
 使い方: python scripts/make-voices.py            すべて作り直す
         python scripts/make-voices.py --changed  原稿が変わった台詞だけ作り直す
-出力: public/voice/<id>.wav、src/data/voice.json（長さと1フレームごとの音量）、script/readings.txt（読みの確認用）
+出力: public/voice/<id>.wav と .mp3（動画は MP3 を使う）、src/data/voice.json（長さと1フレームごとの音量）、script/readings.txt（読みの確認用）
 クレジット表記が必要: VOICEVOX:ずんだもん、VOICEVOX:春日部つむぎ
 """
 import hashlib, io, json, re, sys, urllib.parse, urllib.request, wave
@@ -102,6 +102,16 @@ for e in EP:
     print(e['id'], e['who'], round(len(a) / sr, 2), 's', flush=True)
 
 META.write_text(json.dumps(meta, ensure_ascii=False))
+# 動画は MP3 を読む（リポジトリを軽くするため）。ffmpeg で変換する
+import shutil, subprocess
+if shutil.which('ffmpeg'):
+    for e in EP:
+        if 'who' in e:
+            w, m = OUT / f"{e['id']}.wav", OUT / f"{e['id']}.mp3"
+            if w.exists() and (not m.exists() or m.stat().st_mtime < w.stat().st_mtime):
+                subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(w), '-c:a', 'libmp3lame', '-b:a', '96k', str(m)], check=True)
+else:
+    print('ffmpeg が見つかりません。public/voice/*.wav を MP3 に変換してください')
 if readings:
     (ROOT / 'script/readings.txt').write_text('\n'.join(readings) + '\n')
 print('total', round(sum(m['dur'] for m in meta.values()), 1), 's,', len(meta), 'lines')

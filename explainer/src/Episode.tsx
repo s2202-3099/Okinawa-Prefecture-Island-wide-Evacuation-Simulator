@@ -36,7 +36,7 @@ export const Episode: React.FC = () => (
     <Screen />
     <Track name="声">
       {LINES.map((l) => (
-        <Audio key={l.id} name={`${l.who === 'z' ? 'ずんだもん' : 'つむぎ'} ${l.id}`} src={staticFile(`voice/${l.id}.wav`)} from={l.from} durationInFrames={l.dur} />
+        <Audio key={l.id} name={`${l.who === 'z' ? 'ずんだもん' : 'つむぎ'} ${l.id}`} src={staticFile(`voice/${l.id}.mp3`)} from={l.from} durationInFrames={l.dur} />
       ))}
     </Track>
     <Track name="BGM">
