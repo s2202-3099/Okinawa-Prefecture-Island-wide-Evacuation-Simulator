@@ -233,7 +233,9 @@ const GroupLabels: React.FC<{frame: number; cam: Camera}> = ({frame, cam}) => {
   );
 };
 
-const SLOTS: Record<HubId, string> = {OKA: '那覇 210便/日', MYK: '宮古・下地島 53便/日', ISG: '新石垣 40便/日'};
+const SLOTS: Record<HubId, string> = {OKA: '那覇 210便/日', MYK: '宮古＋下地島 計53便/日', ISG: '新石垣 40便/日'};
+// 下地島空港。モデルでは宮古空港と合わせて1つの拠点（MYK）として扱う
+const SHIMOJI_AP = {lat: 24.8267, lng: 125.1447};
 const Places: React.FC<{frame: number; cam: Camera}> = ({frame, cam}) => {
   const near = interpolate(cam.span, [14, 18], [1, 0], clamp);
   const far = 1 - near;
@@ -254,6 +256,15 @@ const Places: React.FC<{frame: number; cam: Camera}> = ({frame, cam}) => {
           </g>
         );
       })}
+      {(() => {
+        const sp = project(cam, SHIMOJI_AP.lng, SHIMOJI_AP.lat);
+        return (
+          <g opacity={hubOn}>
+            <rect x={sp.x - 6} y={sp.y - 6} width={12} height={12} fill={C.ink} transform={`rotate(45 ${sp.x} ${sp.y})`} />
+            <Label x={sp.x - 14} y={sp.y - 22} size={22} anchor="end" opacity={hubFocus * near}>下地島</Label>
+          </g>
+        );
+      })()}
       <g opacity={hubOn}>
         <rect x={kd.x - 6} y={kd.y - 6} width={12} height={12} fill={C.naha} transform={`rotate(45 ${kd.x} ${kd.y})`} />
         <Label x={kd.x + 80} y={kd.y + 40} size={22} color={C.naha} opacity={hubFocus * near}>嘉手納（2割を使用）</Label>
@@ -284,8 +295,8 @@ type Phase = {from: number; to: number; head: string; sub: string; red?: boolean
 const PHASES: Phase[] = [
   {from: 0, to: INTRO_A, head: `住民${Math.round(S.residents / 1e4)}万人＋観光客${Math.round(S.tourists / 1e4)}万人`,
     sub: `沖縄本島${man(mainPop)}・周辺の離島${man(outerPop)}・先島${man(sakiPop)}`},
-  {from: INTRO_A, to: INTRO, head: '島の外への出口は3つの空港',
-    sub: '空港の駐機スポットで1日に出せる便数が決まる。嘉手納は2割を使う想定'},
+  {from: INTRO_A, to: INTRO, head: '島の外への出口は4つの空港',
+    sub: '宮古と下地島は橋でつながり、1つの拠点として計53便/日。嘉手納は2割を使う想定'},
   {from: INTRO, to: d8, head: `1〜${START}日目　輸送開始まで`,
     sub: '動くのは定期便だけ。観光客と一部の住民が自力で島を出る'},
   {from: d8, to: ATTACK_FROM, head: `${START + 1}〜${WARN}日目　全国24空港へ`,
