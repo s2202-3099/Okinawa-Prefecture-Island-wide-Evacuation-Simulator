@@ -1,0 +1,236 @@
+{
+ "base": {
+  "atWar": 479466,
+  "allDay": 51,
+  "sakiDay": 28,
+  "target": 1551540,
+  "bind": {
+   "land": 5,
+   "sea": 82,
+   "ground": 0,
+   "dest": 0,
+   "origin": 156,
+   "fleet": 0,
+   "recv": 0
+  },
+  "needShelter": 1347234,
+  "destCap": 600000,
+  "shelterOver": 747234
+ },
+ "levers": [
+  {
+   "id": "start3",
+   "label": "決心を3日早める",
+   "note": "着手 7日→4日",
+   "r": {
+    "atWar": 365156,
+    "allDay": 45,
+    "sakiDay": 27,
+    "target": 1551540,
+    "bind": {
+     "land": 5,
+     "sea": 84,
+     "ground": 0,
+     "dest": 0,
+     "origin": 158,
+     "fleet": 0,
+     "recv": 0
+    },
+    "needShelter": 1385641,
+    "destCap": 600000,
+    "shelterOver": 785641
+   },
+   "saved": 114310
+  },
+  {
+   "id": "selfRes",
+   "label": "早めの自主避難を促す",
+   "note": "住民の自主避難 8%→18%",
+   "r": {
+    "atWar": 423982,
+    "allDay": 48,
+    "sakiDay": 28,
+    "target": 1551540,
+    "bind": {
+     "land": 4,
+     "sea": 79,
+     "ground": 0,
+     "dest": 0,
+     "origin": 155,
+     "fleet": 0,
+     "recv": 0
+    },
+    "needShelter": 1293085,
+    "destCap": 600000,
+    "shelterOver": 693085
+   },
+   "saved": 55484
+  },
+  {
+   "id": "spots",
+   "label": "那覇の駐機スポットを3割増",
+   "note": "30→39スポット",
+   "r": {
+    "atWar": 479466,
+    "allDay": 46,
+    "sakiDay": 28,
+    "target": 1551540,
+    "bind": {
+     "land": 5,
+     "sea": 77,
+     "ground": 0,
+     "dest": 0,
+     "origin": 156,
+     "fleet": 0,
+     "recv": 0
+    },
+    "needShelter": 1347234,
+    "destCap": 600000,
+    "shelterOver": 747234
+   },
+   "saved": 0
+  },
+  {
+   "id": "planes",
+   "label": "民間機の徴用を5割増やす",
+   "note": "110機→165機",
+   "r": {
+    "atWar": 376120,
+    "allDay": 46,
+    "sakiDay": 15,
+    "target": 1551540,
+    "bind": {
+     "land": 5,
+     "sea": 50,
+     "ground": 0,
+     "dest": 0,
+     "origin": 173,
+     "fleet": 0,
+     "recv": 0
+    },
+    "needShelter": 1347234,
+    "destCap": 600000,
+    "shelterOver": 747234
+   },
+   "saved": 103346
+  },
+  {
+   "id": "us",
+   "label": "嘉手納の使用を3倍に",
+   "note": "20%→60%",
+   "r": {
+    "atWar": 407616,
+    "allDay": 44,
+    "sakiDay": 28,
+    "target": 1551540,
+    "bind": {
+     "land": 5,
+     "sea": 75,
+     "ground": 0,
+     "dest": 0,
+     "origin": 156,
+     "fleet": 0,
+     "recv": 0
+    },
+    "needShelter": 1347234,
+    "destCap": 600000,
+    "shelterOver": 747234
+   },
+   "saved": 71850
+  },
+  {
+   "id": "ships",
+   "label": "船舶の徴用率を5割増",
+   "note": "40%→60%",
+   "r": {
+    "atWar": 421466,
+    "allDay": 47,
+    "sakiDay": 28,
+    "target": 1551540,
+    "bind": {
+     "land": 5,
+     "sea": 78,
+     "ground": 0,
+     "dest": 0,
+     "origin": 156,
+     "fleet": 0,
+     "recv": 0
+    },
+    "needShelter": 1347234,
+    "destCap": 600000,
+    "shelterOver": 747234
+   },
+   "saved": 58000
+  }
+ ],
+ "mc": {
+  "n": 2000,
+  "pDone": 0.2235,
+  "p10": 0,
+  "p50": 951120,
+  "p90": 1472021,
+  "useRate": false,
+  "prcc": [
+   {
+    "name": "攻撃までの猶予",
+    "val": 0.97
+   },
+   {
+    "name": "着手までの日数",
+    "val": -0.52
+   },
+   {
+    "name": "民間旅客機",
+    "val": 0.25
+   },
+   {
+    "name": "住民の自主避難",
+    "val": 0.25
+   },
+   {
+    "name": "観光の繁閑",
+    "val": -0.15
+   },
+   {
+    "name": "観光客の自力退避",
+    "val": 0.12
+   },
+   {
+    "name": "船舶の徴用率",
+    "val": 0.09
+   },
+   {
+    "name": "本島経由の比率",
+    "val": -0.09
+   },
+   {
+    "name": "他方面の割当率",
+    "val": 0.08
+   },
+   {
+    "name": "民間ヘリ",
+    "val": 0.05
+   },
+   {
+    "name": "妨害の度合い",
+    "val": -0.04
+   },
+   {
+    "name": "長期枠の開設速度",
+    "val": 0.04
+   },
+   {
+    "name": "受入空港の分散",
+    "val": -0.03
+   },
+   {
+    "name": "先島への優先",
+    "val": 0.01
+   },
+   {
+    "name": "米軍施設の使用",
+    "val": 0
+   }
+  ]
+ }
+}

@@ -1,5 +1,12 @@
 {
- "title": 12.445,
+ "title": 11.581,
+ "about1": 20.089,
+ "about2_0": 4.418,
+ "about2_1": 4.951,
+ "about2_2": 6.498,
+ "about2_3": 7.319,
+ "about3_0": 16.925,
+ "about3_1": 14.024,
  "introA": 13.203,
  "introB": 19.822,
  "days1": 12.072,
@@ -7,5 +14,11 @@
  "attack": 10.547,
  "days26": 11.805,
  "chart": 19.551,
- "closing": 7.453
+ "lessons": 32.085,
+ "policy0": 5.026,
+ "policy1": 10.402,
+ "policy2": 8.823,
+ "policy3": 6.839,
+ "policy4": 16.232,
+ "closing": 9.608
 }

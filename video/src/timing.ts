@@ -70,12 +70,45 @@ export const dayAt = (frame: number): {d: number; p: number} => {
   return {d: 0, p: 0};
 };
 
-// ── タイトル・比較グラフ・結び
+// ── 解説・教訓・政策のシーン。ナレーションを数本に分け、絵の切り替えをその頭に合わせる
+const CLIP_GAP = 14; // ナレーションとナレーションの間
+const CLIP_LEAD = 15; // シーン頭からの入り
+const CLIP_TAIL = 45; // 最後のナレーションの後の余韻
+export const CLIPS = {
+  about1: ['about1'],
+  about2: ['about2_0', 'about2_1', 'about2_2', 'about2_3'],
+  about3: ['about3_0', 'about3_1'],
+  lessons: ['lessons'],
+  policy: ['policy0', 'policy1', 'policy2', 'policy3', 'policy4'],
+} as const satisfies Record<string, readonly NKey[]>;
+type ClipScene = keyof typeof CLIPS;
+export const clipStarts = (scene: ClipScene) => {
+  const out: number[] = [];
+  let t = CLIP_LEAD;
+  for (const k of CLIPS[scene]) { out.push(t); t += N[k] + CLIP_GAP; }
+  return out;
+};
+const clipSceneLen = (scene: ClipScene) => {
+  const st = clipStarts(scene), ks = CLIPS[scene];
+  return st[st.length - 1] + N[ks[ks.length - 1]] + CLIP_TAIL;
+};
+
+// ── シーンの並び
 export const TITLE_LEN = Math.max(150, 15 + N.title + 30);
+export const ABOUT1_LEN = clipSceneLen('about1');
+export const ABOUT2_LEN = clipSceneLen('about2');
+export const ABOUT3_LEN = clipSceneLen('about3');
 export const CHART_LEN = Math.max(480, 15 + N.chart + 90);
+export const LESSONS_LEN = clipSceneLen('lessons');
+export const POLICY_LEN = clipSceneLen('policy') + 30;
 export const CLOSING_LEN = Math.max(240, 10 + N.closing + 120);
 
-export const MAP_FROM = TITLE_LEN;
+export const ABOUT1_FROM = TITLE_LEN;
+export const ABOUT2_FROM = ABOUT1_FROM + ABOUT1_LEN;
+export const ABOUT3_FROM = ABOUT2_FROM + ABOUT2_LEN;
+export const MAP_FROM = ABOUT3_FROM + ABOUT3_LEN;
 export const CHART_FROM = MAP_FROM + MAP_SCENE_LEN;
-export const CLOSING_FROM = CHART_FROM + CHART_LEN;
+export const LESSONS_FROM = CHART_FROM + CHART_LEN;
+export const POLICY_FROM = LESSONS_FROM + LESSONS_LEN;
+export const CLOSING_FROM = POLICY_FROM + POLICY_LEN;
 export const TOTAL_LEN = CLOSING_FROM + CLOSING_LEN;

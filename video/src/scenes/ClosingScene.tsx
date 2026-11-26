@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import {C, fontFamily} from '../theme';
+import {N} from '../timing';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
@@ -11,12 +12,15 @@ export const ClosingScene: React.FC = () => {
       <div style={{fontSize: 76, fontWeight: 900, lineHeight: 1.4, opacity: interpolate(f, [5, 30], [0, 1], clamp)}}>
         輸送が破綻するのではなく、<br />間に合わない
       </div>
-      <div style={{fontSize: 32, lineHeight: 1.7, marginTop: 50, opacity: interpolate(f, [35, 60], [0, 1], clamp), color: '#C9C2B2'}}>
+      <div style={{fontSize: 48, fontWeight: 700, marginTop: 24, color: '#E8C9DA', opacity: interpolate(f, [N.closing * 0.55, N.closing * 0.55 + 25], [0, 1], clamp)}}>
+        平時の備えで、時間を買う
+      </div>
+      <div style={{fontSize: 32, lineHeight: 1.7, marginTop: 50, opacity: interpolate(f, [N.closing + 20, N.closing + 45], [0, 1], clamp), color: '#C9C2B2'}}>
         座席数・回転日数・駐機スポット・受入枠などは公表されていないため推定値です。<br />
         在日米軍施設の使用と全国規模の受入枠は、公的な裏づけのない仮置きです。<br />
         個人による非公式な図上検討で、政府・自治体・自衛隊その他の機関の見解ではありません。
       </div>
-      <div style={{fontSize: 28, marginTop: 44, opacity: interpolate(f, [60, 85], [0, 1], clamp), color: '#9FA6AC', lineHeight: 1.6}}>
+      <div style={{fontSize: 28, marginTop: 44, opacity: interpolate(f, [N.closing + 40, N.closing + 65], [0, 1], clamp), color: '#9FA6AC', lineHeight: 1.6}}>
         出所：内閣官房国家危機管理室「沖縄県の離島からの住民避難・受入れに係る取組」、住民基本台帳、部隊編成の公表資料<br />
         ナレーション　VOICEVOX:ずんだもん
       </div>
